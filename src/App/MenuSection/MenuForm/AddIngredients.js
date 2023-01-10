@@ -4,6 +4,7 @@ function AddIngredients({ingredients, setIngredients}){
     const [ ingredientValue, setNewIngredient ] = React.useState("")
 
     const onIngredientAdd = (event) => {
+        event.preventDefault()
         setNewIngredient(event.target.value)
     }
 

@@ -2,6 +2,7 @@ import React from "react"
 import { NavMenu } from "./NavMenu"
 import { MenuForm } from "./MenuForm/MenuForm"
 import { CreateForm } from "./MenuForm/CreateForm"
+import { ListForm } from "./MenuForm/ListForm"
 
 function MenuSection(){
     const useNavBar = () => {
@@ -46,13 +47,16 @@ function MenuSection(){
         })
         
     }
-
-    const {createForm, setForm} = useNavBar()
-
+    
+    const {createForm, listForm, setForm} = useNavBar()
+    
+    console.log(createForm)
+    
     return (
         <React.Fragment>
             <NavMenu setContent={setForm}/>
             {!!createForm && <MenuForm><CreateForm/></MenuForm>}
+            {!!listForm && <ListForm></ListForm>}
         </React.Fragment>
     )
 }
