@@ -50,8 +50,6 @@ function MenuSection(){
     
     const {createForm, listForm, setForm} = useNavBar()
     
-    console.log(createForm)
-    
     return (
         <React.Fragment>
             <NavMenu setContent={setForm}/>

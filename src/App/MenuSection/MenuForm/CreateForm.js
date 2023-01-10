@@ -10,20 +10,17 @@ function CreateForm(){
  
     const eventHandler = () => {
         const data = {
-            name: document.querySelector("#nameMenu"),
-            basePrice:document.querySelector("#priceMenu"),
+            name: document.querySelector("#nameMenu-text").value,
+            basePrice:document.querySelector("#priceMenu-text").value,
             healthFilter:{
-                meal: document.querySelector("#mealFilterMenu") || false,
-                dairy: document.querySelector("#dairyFilterMenu") || false,
-                flavour: document.querySelector("#flavourFilterMenu") || false
+                meal: document.querySelector("#meatFilterMenu").value || false,
+                dairy: document.querySelector("#dairyFilterMenu").value || false,
+                flavour: document.querySelector("#flavourFilterMenu").value || false
             },
             ingredients:[...mealIngredients]
         }
-         if (data.filter( (prop) => !!prop )===6){
-            addMenu(data)
-        }else{
-             alert("No se agrego")
-        }
+        console.log(data)
+        addMenu(data)
     }
 
 
@@ -38,6 +35,7 @@ function CreateForm(){
                 }
             })
             if(!!res){
+                console.log(res)
                 alert("Agregado")
             }else{
                 alert("hubo un error")
@@ -49,7 +47,6 @@ function CreateForm(){
 
     return(
         <React.Fragment>
-            <form className="createMenu-form">
                 <label>
                     Nombre
                     <input id="nameMenu-text" type="text"></input>
@@ -62,29 +59,28 @@ function CreateForm(){
                     Filtros
                     <label>
                         Carnes
-                        <input id="meatFilterMenu-text" type="checkbox"></input>
+                        <input id="meatFilterMenu" type="checkbox"></input>
                     </label>
                     <label>
                         Lacteos
-                        <input id="dairyFilterMenu-text" type="checkbox"></input>
+                        <input id="dairyFilterMenu" type="checkbox"></input>
                     </label>
                     <label>
                         Harinas
-                        <input id="flavourFilterMenu-text" type="checkbox"></input>
+                        <input id="flavourFilterMenu" type="checkbox"></input>
                     </label>
                 </p>
                 <p>
                     Ingredientes:
                 </p>
-                {console.log(mealIngredients)}
-                <AddIngredients ingredients={mealIngredients} setIngredients={setMealIngredients}/>
-                <button onClick={eventHandler}>Crear Menu</button>    
-            </form>
-            {
+                {
                     !!mealIngredients && mealIngredients.map( (ingredient) => ( 
                                                             <Ingredients key={ingredient.text} text={ingredient.text}/> 
                                                         ))
                 }
+                <AddIngredients ingredients={mealIngredients} setIngredients={setMealIngredients}/>
+                <button onClick={eventHandler}>Crear Menu</button>
+            
                 
         </React.Fragment>
     )
