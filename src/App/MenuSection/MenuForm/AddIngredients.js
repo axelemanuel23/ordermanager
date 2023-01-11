@@ -1,18 +1,16 @@
 import React from "react"
 
 function AddIngredients({ingredients, setIngredients}){
-    const [ ingredientValue, setNewIngredient ] = React.useState("")
+    const [ ingredientValue, setIngredientValue ] = React.useState("")
 
     const onIngredientAdd = (event) => {
         event.preventDefault()
-        setNewIngredient(event.target.value)
+        setIngredientValue(event.target.value)
     }
 
     const addIngredient = () => {
-        const newIngredient = {
-            text: ingredientValue
-        }
-        setIngredients([...ingredients, newIngredient])
+        setIngredients([...ingredients, ingredientValue])
+        setIngredientValue("")
     }
     return (
         <React.Fragment>

@@ -7,19 +7,18 @@ import { AddIngredients } from "./AddIngredients"
 function CreateForm(){
 
     const [ mealIngredients, setMealIngredients ] = React.useState([])
- 
+
     const eventHandler = () => {
         const data = {
             name: document.querySelector("#nameMenu-text").value,
             basePrice:document.querySelector("#priceMenu-text").value,
             healthFilter:{
-                meal: document.querySelector("#meatFilterMenu").value || false,
-                dairy: document.querySelector("#dairyFilterMenu").value || false,
-                flavour: document.querySelector("#flavourFilterMenu").value || false
+                meat: document.querySelector("#meatFilterMenu").checked || false,
+                dairy: document.querySelector("#dairyFilterMenu").checked || false,
+                flavour: document.querySelector("#flavourFilterMenu").checked || false
             },
             ingredients:[...mealIngredients]
         }
-        console.log(data)
         addMenu(data)
     }
 
@@ -58,15 +57,15 @@ function CreateForm(){
                 <p>
                     Filtros
                     <label>
-                        Carnes
+                        Carnes: 
                         <input id="meatFilterMenu" type="checkbox"></input>
                     </label>
                     <label>
-                        Lacteos
+                        Lacteos: 
                         <input id="dairyFilterMenu" type="checkbox"></input>
                     </label>
                     <label>
-                        Harinas
+                        Harinas: 
                         <input id="flavourFilterMenu" type="checkbox"></input>
                     </label>
                 </p>
@@ -75,7 +74,7 @@ function CreateForm(){
                 </p>
                 {
                     !!mealIngredients && mealIngredients.map( (ingredient) => ( 
-                                                            <Ingredients key={ingredient.text} text={ingredient.text}/> 
+                                                            <Ingredients key={ingredient} text={ingredient}/> 
                                                         ))
                 }
                 <AddIngredients ingredients={mealIngredients} setIngredients={setMealIngredients}/>

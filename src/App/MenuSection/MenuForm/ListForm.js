@@ -56,6 +56,9 @@ function ListForm(){
                                                     !!condition[1] && <p>Si</p>
 
                                                 }
+                                                {
+                                                    !condition[0] && <p>No</p>
+                                                }
                                         </li>
                                     ) )
                                 // Object.keys(res.data.data[0].healthFilter)[0]
